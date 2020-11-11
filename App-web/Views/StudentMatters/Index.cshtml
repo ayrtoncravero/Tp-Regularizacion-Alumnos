@@ -1,0 +1,49 @@
+﻿@model IEnumerable<App_web.StudentMatter>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>estudiantes y materias</h1>
+
+<p>
+    <a asp-action="Create">Crear nuevo estudiante</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Student.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Matter.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnrollmentDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.Id)
+                @*@Html.DisplayFor(modelItem => item.Student.Name)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Matter.Id)
+                @*@Html.DisplayFor(modelItem => item.Matter.Name)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,37 @@
+﻿@Model App_web.ViewModel.Paginator 
+
+<nav aria-label="...">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @(Model.PageActual == 1 ? "disabled" : "")">
+            <a class="page-link" asp-route-page="@(Model.PageActual - 1)" tabindex="-1"><<</a>
+        </li>
+
+        @if (Model.PageActual > 2)
+        {
+            <li class="page-item"><a class="page-link" asp-route-page="1">1</a></li>
+        }
+
+        @if (Model.PageActual > 1)
+        {
+            <li class="page-item"><a class="page-link" asp-route-page="@(Model.PageActual - 1)">@(Model.PageActual - 1)</a></li>
+        }
+
+        <li class="page-item active">
+            <a class="page-link" href="#">@Model.PageActual <span class="sr-only">(current)</span></a>
+        </li>
+
+        @if (Model.PageActual < Model.TotalPages)
+        {
+            <li class="page-item"><a class="page-link" asp-route-page="@(Model.PageActual + 1)">@(Model.PageActual + 1)</a></li>
+        }
+
+        @if (Model.PageActual < Model.TotalPages - 1)
+        {
+            <li class="page-item"><a class="page-link" asp-route-page="@(Model.TotalPages)">@(Model.TotalPages)</a></li>
+        }
+
+        <li class="page-item @(Model.PageActual == Model.TotalPages ? "disabled" : "")">
+            <a class="page-link" asp-route-page="@(Model.PageActual + 1)">>></a>
+        </li>
+    </ul>
+</nav>

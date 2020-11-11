@@ -1,0 +1,36 @@
+﻿@model List<App_web.ViewModel.UserRolesViewModel>
+
+@{
+    ViewData["Title"] = "Indice";
+}
+
+<h1>Usuarios y roles</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre de usuario</th>
+            <th>Correo</th>
+            <th>Roles</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.UserName
+                </td>
+                <td>
+                    @item.Email
+                </td><td>
+                    @string.Join(", ",item.Roles)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="AdminRoles" asp-route-UserId="@item.UserId">Administrar roles</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

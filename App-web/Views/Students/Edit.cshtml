@@ -1,0 +1,99 @@
+﻿@model App_web.Student
+
+@{
+    ViewData["Title"] = "Editar - Estudiante";
+}
+
+<h1>Editar estudiante</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CareerId" class="control-label"></label>
+                <select asp-for="CareerId" class="form-control" asp-items="ViewBag.CareerId"></select>
+                <span asp-validation-for="CareerId" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="NamePhoto" />
+            <div class="form-group">
+                <img src="~/images/students/@Model.NamePhoto" id="image" alt="Imagen de estudiante" height="80" width="80" asp-append-version="true" />
+                <input asp-for="NamePhoto" type="file" id="selectionImg" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <!--<th>-->
+                    @*@Html.DisplayNameFor(model => model.Student)*@
+                    <!--Nombre de la materia
+                </th>-->
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Matter)*@
+                    Materia
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.EnrollmentDate)*@
+                    Fecha de inscripcion
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.StudentMatter)
+            {
+                <tr>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.Student.Id)
+                        @Html.DisplayFor(modelItem => item.Matter.Name)
+                        @Html.DisplayFor(modelItem => item.Student.Name)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Matter.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EnrollmentDate)
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })*@
+                        @Html.ActionLink("Editar", "Edit", "StudentMatters", new { idStudent = item.StudentId, idMatter = item.MatterId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar a la lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@*Script necesarios para la previsualizacion de la imagen*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/js/images.js"></script>
