@@ -9162,11 +9162,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Users\\Ayrton\\Desktop\\Tp-el nuevo\\congenial-guacamole\\App-web\\App-web.csproj",
+      "projectUniqueName": "D:\\Users\\Ayrton\\Desktop\\Tp - pelado\\Tp-Regularizacion-Alumnos\\App-web\\App-web.csproj",
       "projectName": "App-web",
-      "projectPath": "D:\\Users\\Ayrton\\Desktop\\Tp-el nuevo\\congenial-guacamole\\App-web\\App-web.csproj",
+      "projectPath": "D:\\Users\\Ayrton\\Desktop\\Tp - pelado\\Tp-Regularizacion-Alumnos\\App-web\\App-web.csproj",
       "packagesPath": "C:\\Users\\Ayrton\\.nuget\\packages\\",
-      "outputPath": "D:\\Users\\Ayrton\\Desktop\\Tp-el nuevo\\congenial-guacamole\\App-web\\obj\\",
+      "outputPath": "D:\\Users\\Ayrton\\Desktop\\Tp - pelado\\Tp-Regularizacion-Alumnos\\App-web\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Ayrton\\AppData\\Roaming\\NuGet\\NuGet.Config",

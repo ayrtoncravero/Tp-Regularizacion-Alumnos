@@ -76,21 +76,37 @@ namespace App_web.Controllers
         }
 
         // GET: StudentMatters/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var studentMatter = await _context.StudentMatters.FindAsync(id);
-            if (studentMatter == null)
+        //    var studentMatter = await _context.StudentMatters.FindAsync(id);
+        //    if (studentMatter == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    ViewData["MatterId"] = new SelectList(_context.Matters, "Id", "Id", studentMatter.MatterId);
+        //    ViewData["StudentId"] = new SelectList(_context.Students, "Id", "Id", studentMatter.StudentId);
+        //    return View(studentMatter);
+        //}
+
+        public async Task<IActionResult> Edit(int? idStudent, int? idMatter)
+        {
+            if (idStudent == null || idMatter == null)
             {
                 return NotFound();
             }
-            ViewData["MatterId"] = new SelectList(_context.Matters, "Id", "Id", studentMatter.MatterId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "Id", "Id", studentMatter.StudentId);
-            return View(studentMatter);
+            var studentmatter = await _context.StudentMatters.FindAsync(idStudent, idMatter);
+            if (studentmatter == null)
+            {
+                return NotFound();
+            }
+            ViewData["estudianteId"] = new SelectList(_context.Students, "id", "apellido", studentmatter.StudentId);
+            ViewData["materiaId"] = new SelectList(_context.Matters, "id", "nombre", studentmatter.MatterId);
+            return View(studentmatter);
         }
 
         // POST: StudentMatters/Edit/5
