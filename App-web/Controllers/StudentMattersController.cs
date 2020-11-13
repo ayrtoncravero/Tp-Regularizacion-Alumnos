@@ -11,6 +11,7 @@ using App_web.Models;
 
 namespace App_web.Controllers
 {
+    [Authorize(Roles = Roles.AdminRole)]
     public class StudentMattersController : Controller
     {
         private readonly ConectionDB _context;

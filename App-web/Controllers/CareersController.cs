@@ -13,6 +13,7 @@ using App_web.ViewModel;
 
 namespace App_web.Controllers
 {
+    [Authorize(Roles = Roles.AdminRole)]
     public class CareersController : Controller
     {
         private readonly ConectionDB _context;
@@ -25,6 +26,7 @@ namespace App_web.Controllers
         }
 
         // GET: Careers
+        [AllowAnonymous]
         public async Task<IActionResult> Index(int page = 1)
         {
             Paginator paginator = new Paginator();

@@ -14,8 +14,8 @@ using App_web.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace App_web.Controllers
-{ 
-    //[Authorize(Roles = Roles.AdminRole)]
+{
+    [Authorize(Roles = Roles.AdminRole)]
     public class StudentsController : Controller
     {
         private readonly ConectionDB _context;
@@ -29,6 +29,7 @@ namespace App_web.Controllers
 
         // GET: Students
         //Aqui se resive la info del Search
+        [AllowAnonymous]
         public async Task<IActionResult> Index(string textSearch, int? CareerId, int page = 1)
         {
             int RegisterForPage = 5;
@@ -40,6 +41,7 @@ namespace App_web.Controllers
             {
                 conectionDB = conectionDB.Where(e => e.Name.Contains(textSearch));
             }
+
             //Filtro para Careers
             if (CareerId.HasValue)
             {
@@ -99,7 +101,7 @@ namespace App_web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Age,Year,CareerId,NamePhoto")] Student student, UserManager<IdentityRole> userManager)
+        public async Task<IActionResult> Create([Bind("Id,Name,Age,Year,CareerId,NamePhoto")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -124,9 +126,10 @@ namespace App_web.Controllers
                 _context.Add(student);
                 await _context.SaveChangesAsync();
 
+                //Profe intente hacer el auto-role al estudiante que recien se registra, pero me tiro error
 
                 //var userAdmin = userManager.Users.Where(x => x.Email == Roles.MailAdminRole).FirstOrDefault();
-                //if (userAdmin != null) return;
+                ////if (userAdmin != null) return;
 
                 //userAdmin = new IdentityUser
                 //{
@@ -136,7 +139,7 @@ namespace App_web.Controllers
                 //    PhoneNumberConfirmed = true
                 //};
 
-                //await userManager.CreateAsync(userAdmin, "Clave1");
+                //await userManager.CreateAsync(userAdmin, "w5KYECgrWfKy3z");
                 //await userManager.AddToRoleAsync(userAdmin, Roles.EstudianteRole);
 
 

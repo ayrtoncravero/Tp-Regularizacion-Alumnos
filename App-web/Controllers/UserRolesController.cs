@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App_web.Controllers
 {
+    [Authorize(Roles = Roles.AdminRole)]
     public class UserRolesController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;

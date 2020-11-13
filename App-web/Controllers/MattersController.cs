@@ -11,6 +11,7 @@ using App_web.Models;
 
 namespace App_web.Controllers
 {
+    [Authorize(Roles = Roles.AdminRole)]
     public class MattersController : Controller
     {
         private readonly ConectionDB _context;
@@ -21,6 +22,7 @@ namespace App_web.Controllers
         }
 
         // GET: Matters
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Matters.ToListAsync());
