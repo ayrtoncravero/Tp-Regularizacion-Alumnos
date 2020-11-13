@@ -11,7 +11,6 @@ using App_web.Models;
 
 namespace App_web.Controllers
 {
-    [Authorize(Roles = Roles.SuperAdminRole)]
     public class StudentMattersController : Controller
     {
         private readonly ConectionDB _context;
@@ -22,7 +21,6 @@ namespace App_web.Controllers
         }
 
         // GET: StudentMatters
-        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var conectionDB = _context.StudentMatters.Include(s => s.Matter).Include(s => s.Student);

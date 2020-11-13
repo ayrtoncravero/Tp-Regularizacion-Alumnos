@@ -11,10 +11,11 @@ using System.IO;
 using App_web.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using App_web.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace App_web.Controllers
-{
-    [Authorize(Roles = Roles.SuperAdminRole)]
+{ 
+    //[Authorize(Roles = Roles.AdminRole)]
     public class StudentsController : Controller
     {
         private readonly ConectionDB _context;
@@ -28,7 +29,6 @@ namespace App_web.Controllers
 
         // GET: Students
         //Aqui se resive la info del Search
-        [AllowAnonymous]
         public async Task<IActionResult> Index(string textSearch, int? CareerId, int page = 1)
         {
             int RegisterForPage = 5;
@@ -99,11 +99,12 @@ namespace App_web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Age,Year,CareerId,NamePhoto")] Student student)
+        public async Task<IActionResult> Create([Bind("Id,Name,Age,Year,CareerId,NamePhoto")] Student student, UserManager<IdentityRole> userManager)
         {
             if (ModelState.IsValid)
             {
                 var files = HttpContext.Request.Form.Files;
+
                 if(files != null && files.Count > 0)
                 {
                     var filesPhoto = files[0];
@@ -122,6 +123,23 @@ namespace App_web.Controllers
 
                 _context.Add(student);
                 await _context.SaveChangesAsync();
+
+
+                //var userAdmin = userManager.Users.Where(x => x.Email == Roles.MailAdminRole).FirstOrDefault();
+                //if (userAdmin != null) return;
+
+                //userAdmin = new IdentityUser
+                //{
+                //    UserName = Roles.MailAdminRole,
+                //    Email = Roles.MailAdminRole,
+                //    EmailConfirmed = true,
+                //    PhoneNumberConfirmed = true
+                //};
+
+                //await userManager.CreateAsync(userAdmin, "Clave1");
+                //await userManager.AddToRoleAsync(userAdmin, Roles.EstudianteRole);
+
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CareerId"] = new SelectList(_context.Careers, "Id", "Description", student.CareerId);

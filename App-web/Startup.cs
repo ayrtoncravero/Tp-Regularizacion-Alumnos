@@ -50,7 +50,7 @@ namespace App_web
 
                     //Opciones de usuario
                     options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-                    options.User.RequireUniqueEmail = false;
+                    options.User.RequireUniqueEmail = true;
                 })
 
                 .AddRoles<IdentityRole>()

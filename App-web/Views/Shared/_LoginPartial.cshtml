@@ -6,7 +6,7 @@
     @if (SignInManager.IsSignedIn(User))
     {
         var user = await UserManager.FindByNameAsync(User.Identity.Name);
-        if (user != null && await UserManager.IsInRoleAsync(user, Roles.SuperAdminRole))
+        if (user != null && await UserManager.IsInRoleAsync(user, Roles.AdminRole))
         {
             <a class="nav-link text-dark" asp-controller="UserRoles">Roles de usuarios</a>
         }

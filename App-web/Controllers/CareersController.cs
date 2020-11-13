@@ -8,23 +8,38 @@ using Microsoft.EntityFrameworkCore;
 using App_web;
 using Microsoft.AspNetCore.Authorization;
 using App_web.Models;
+using Microsoft.AspNetCore.Hosting;
+using App_web.ViewModel;
 
 namespace App_web.Controllers
 {
-    [Authorize(Roles = Roles.SuperAdminRole)]
     public class CareersController : Controller
     {
         private readonly ConectionDB _context;
+        private readonly IWebHostEnvironment env;
 
-        public CareersController(ConectionDB context)
+        public CareersController(ConectionDB context, IWebHostEnvironment env)
         {
             _context = context;
+            this.env = env;
         }
 
         // GET: Careers
-        [AllowAnonymous]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
+            Paginator paginator = new Paginator();
+            int RegisterForPage = 5;
+
+            var registersShow = _context.Careers
+                .Skip((page - 1) * RegisterForPage)
+                .Take(RegisterForPage);
+
+            paginator.PageActual = page;
+            paginator.RegistersForPages = RegisterForPage;
+            paginator.TotalRegisters = await _context.Careers.CountAsync();
+
+            ViewBag.Paginator = paginator;
+
             return View(await _context.Careers.ToListAsync());
         }
 
@@ -51,7 +66,6 @@ namespace App_web.Controllers
         {
             return View();
         }
-
         // POST: Careers/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
