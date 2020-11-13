@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/H+qc3xK834krWrT+ODSYHJust3+WrsK6pq5iwcdf4PKnoH1utVS1Wq3BzAddfPx+aP2n0sXyqQ+PfedKdVNnQ==",
+  "dgSpecHash": "raNVUks8Dvs9OxqCSd5TxCo1cmdJ2EgZLM4j0wbTXPzhkvMyFZUZIxYvFZ80h0ywwW9q4W5ADSH7sKRu9o2wsg==",
   "success": true,
-  "projectFilePath": "D:\\Users\\Ayrton\\Desktop\\Tp-el nuevo\\congenial-guacamole\\App-web\\App-web.csproj",
+  "projectFilePath": "D:\\Users\\Ayrton\\Desktop\\Tp - pelado\\Tp-Regularizacion-Alumnos\\App-web\\App-web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ayrton\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.9\\microsoft.aspnetcore.cryptography.internal.3.1.9.nupkg.sha512",
     "C:\\Users\\Ayrton\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.9\\microsoft.aspnetcore.cryptography.keyderivation.3.1.9.nupkg.sha512",

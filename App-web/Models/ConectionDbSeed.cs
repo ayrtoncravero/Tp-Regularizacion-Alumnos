@@ -10,26 +10,28 @@ namespace App_web.Models
     {
         public static async Task SeedRoleAsync(RoleManager<IdentityRole> roleManager)
         {
-            await roleManager.CreateAsync(new IdentityRole(Roles.SuperAdminRole));
-            await roleManager.CreateAsync(new IdentityRole(Roles.AdminRole));
-            await roleManager.CreateAsync(new IdentityRole(Roles.ModeradorRole));
-            await roleManager.CreateAsync(new IdentityRole(Roles.EstudianteRole));
-        }
-        public static async Task SeedSuperAdminAsync(UserManager<IdentityUser> userManager)
+            //Esto es lo que no me dejaba crear
+            //if (roleManager.Roles.Any())
+            //{
+                await roleManager.CreateAsync(new IdentityRole(Roles.AdminRole));
+                await roleManager.CreateAsync(new IdentityRole(Roles.EstudianteRole));
+            //}
+    }
+        public static async Task SeedAdminAsync(UserManager<IdentityUser> userManager)
         {
-            var userAdmin = userManager.Users.Where(x => x.Email == Roles.MailSuperAdmin).FirstOrDefault();
+            var userAdmin = userManager.Users.Where(x => x.Email == Roles.MailAdminRole).FirstOrDefault();
             if (userAdmin != null) return;
 
             userAdmin = new IdentityUser
             {
-                UserName = Roles.MailSuperAdmin,
-                Email = Roles.MailSuperAdmin,
+                UserName = Roles.MailAdminRole,
+                Email = Roles.MailAdminRole,
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true
             };
 
             await userManager.CreateAsync(userAdmin, "Clave1");
-            await userManager.AddToRoleAsync(userAdmin, Roles.SuperAdminRole); 
+            await userManager.AddToRoleAsync(userAdmin, Roles.AdminRole); 
         }
     }
 }

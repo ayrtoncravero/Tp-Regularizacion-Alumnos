@@ -11,7 +11,7 @@ using App_web.Models;
 
 namespace App_web.Controllers
 {
-    [Authorize(Roles = Roles.SuperAdminRole)]
+    [Authorize(Roles = Roles.AdminRole)]
     public class MattersController : Controller
     {
         private readonly ConectionDB _context;

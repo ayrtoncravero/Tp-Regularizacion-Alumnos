@@ -11,10 +11,11 @@ using System.IO;
 using App_web.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using App_web.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace App_web.Controllers
 {
-    [Authorize(Roles = Roles.SuperAdminRole)]
+    [Authorize(Roles = Roles.AdminRole)]
     public class StudentsController : Controller
     {
         private readonly ConectionDB _context;
@@ -40,6 +41,7 @@ namespace App_web.Controllers
             {
                 conectionDB = conectionDB.Where(e => e.Name.Contains(textSearch));
             }
+
             //Filtro para Careers
             if (CareerId.HasValue)
             {
@@ -104,6 +106,7 @@ namespace App_web.Controllers
             if (ModelState.IsValid)
             {
                 var files = HttpContext.Request.Form.Files;
+
                 if(files != null && files.Count > 0)
                 {
                     var filesPhoto = files[0];
@@ -122,6 +125,24 @@ namespace App_web.Controllers
 
                 _context.Add(student);
                 await _context.SaveChangesAsync();
+
+                //Profe intente hacer el auto-role al estudiante que recien se registra, pero me tiro error
+
+                //var userAdmin = userManager.Users.Where(x => x.Email == Roles.MailAdminRole).FirstOrDefault();
+                ////if (userAdmin != null) return;
+
+                //userAdmin = new IdentityUser
+                //{
+                //    UserName = Roles.MailAdminRole,
+                //    Email = Roles.MailAdminRole,
+                //    EmailConfirmed = true,
+                //    PhoneNumberConfirmed = true
+                //};
+
+                //await userManager.CreateAsync(userAdmin, "w5KYECgrWfKy3z");
+                //await userManager.AddToRoleAsync(userAdmin, Roles.EstudianteRole);
+
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CareerId"] = new SelectList(_context.Careers, "Id", "Description", student.CareerId);

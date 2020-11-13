@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App_web.Controllers
 {
-    [Authorize(Roles = Roles.SuperAdminRole)]
+    [Authorize(Roles = Roles.AdminRole)]
     public class UserRolesController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -41,12 +41,12 @@ namespace App_web.Controllers
             return View(listaUsuarios);
         }
 
-        public async Task<IActionResult> AdminRoles(string userId)
+        public async Task<IActionResult> AdminRoles(string UserId)
         {
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByIdAsync(UserId);
             if (user == null)
             {
-                ViewBag.ErrorMessage = $"El usuario con el ID = {userId} no se encuentra.";
+                ViewBag.ErrorMessage = $"El usuario con el ID = {UserId} no se encuentra.";
                 return NotFound();
             }
 
@@ -69,13 +69,13 @@ namespace App_web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AdminRoles(string userId, List<ManagerUserRolesViewModel> model)
+        public async Task<IActionResult> AdminRoles(string UserId, List<ManagerUserRolesViewModel> model)
         {
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByIdAsync(UserId);
             if (user == null)
             {
-                ModelState.AddModelError(string.Empty, $"El usuario con el ID = {userId} no se encuentra.");
-                return View();
+                ModelState.AddModelError(string.Empty, $"El usuario con el ID = {UserId} no se encuentra.");
+                return View(); 
             }
 
             var roles = await _userManager.GetRolesAsync(user);
@@ -84,6 +84,7 @@ namespace App_web.Controllers
             if (!result.Succeeded)
             {
                 ModelState.AddModelError(string.Empty, $"No se pudo quitar los roles del usuario.");
+                return View();
             }
 
             result = await _userManager.AddToRolesAsync(user, model.Where(x => x.IsSelected).Select(x => x.RoleName));
@@ -94,6 +95,6 @@ namespace App_web.Controllers
             }
 
             return RedirectToAction("Index");
-        }
+        } 
     }
 }

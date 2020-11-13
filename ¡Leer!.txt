@@ -1,14 +1,13 @@
-Trabajo de regularizacion de alumnos laboratorio de comútacion IV
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+Trabajo de regularizacion de alumnos laboratorio de computación IV
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 Alumno: Cravero Ayrton 
 Legajo: 14997
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
--En la vista de alumnos no pude encontrar un texto que se me muestra por el paginador.
--Cuando se corren las migraciones y se levanta la el proyecto, no van a funcionar los usuarios,
- lo que se debe de hacer es: Tumbar el proyecto y relevantar y ahi funciona perfectamente,
- a continuacion dejo el rol del superAdmir:
+Cosas que no pude resolver:
+No pude hacer que cuando se crea un estudiante se le sete el rol de estudiante.
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-Credenciales del superAdmin:
-Correo: superadminbrc@gmail.com
-Contraseña: Clave1
+Credenciales de admin:
+ Correo: admin@gmail.com
+ Contraseña: Clave1
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

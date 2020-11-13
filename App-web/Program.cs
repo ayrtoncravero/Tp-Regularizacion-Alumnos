@@ -1,4 +1,4 @@
-using System;
+    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,7 +25,7 @@ namespace App_web
                     var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
 
                     Models.ConectionDbSeed.SeedRoleAsync(roleManager).Wait();
-                    Models.ConectionDbSeed.SeedSuperAdminAsync(userManager).Wait();
+                    Models.ConectionDbSeed.SeedAdminAsync(userManager).Wait();
                 }
                 catch (Exception)
                 {
@@ -33,6 +33,7 @@ namespace App_web
                     throw;
                 }
             }
+
             host.Run();
         }
 
